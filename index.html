@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alarm Clock</title>
+  <title>Alarm Clock with Differential Equation</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -22,6 +22,10 @@
       font-size: 1.2em;
       margin-top: 10px;
     }
+    #equationBox {
+      display: none; /* Hidden until the alarm rings */
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -35,6 +39,17 @@
 
   <br><br>
   <button onclick="setAlarm()">Set Alarm</button>
+
+  <!-- Differential Equation Problem Box -->
+  <div id="equationBox">
+    <h3>Solve this differential equation to turn off the alarm:</h3>
+    <div id="equationProblem"></div>
+    <input type="text" id="equationAnswer" placeholder="Enter your answer">
+    <button onclick="checkAnswer()">Submit</button>
+    <p id="resultMessage"></p>
+  </div>
+
+  <audio id="alarmSound" src="alarm.mp3" preload="auto"></audio>
 
   <script src="main.js"></script>
 
