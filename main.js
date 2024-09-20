@@ -31,7 +31,7 @@ function setAlarm() {
   }
 
   const now = new Date();
-  const alarmTime = new Date(now.toDateString() + ' ' + alarmInput);
+  const alarmTime = new Date(alarmInput);
   
   if (alarmTime < now) {
     alert("The alarm time is in the past! Please select a future time.");
