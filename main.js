@@ -55,6 +55,7 @@ function scheduleAlarm(timeInMs, called) {
         body: 'Click me to turn off.',
         notifyShow: playAlarmSound
     });
+    setTimeout(noti.show(), timeInMs)
 }
 
 function playAlarmSound() {
