@@ -1,0 +1,16 @@
+{
+    "name": "Alarm Clock",
+    "short_name": "Alarm",
+    "description": "A simple alarm clock with differential equation challenge to stop the alarm.",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4CAF50",
+    "orientation": "portrait",
+    "icons": [
+      {
+        "src": "alarm.webp",
+        "type": "image/webp"
+      }
+    ]
+}
