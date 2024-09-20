@@ -37,21 +37,21 @@ function setAlarm() {
     alert("The alarm time is in the past! Please select a future time.");
     return;
   }
-
+  var name = prompt("Choose a name for the alarm.")
   const timeUntilAlarm = alarmTime - now;
 
   alert(`Alarm set for ${alarmInput}`);
 
   // Schedule alarm with service worker notification
-  scheduleAlarm(timeUntilAlarm);
+  scheduleAlarm(timeUntilAlarm, name);
 }
 
-function scheduleAlarm(timeInMs) {
+function scheduleAlarm(timeInMs, called) {
   if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker.ready.then(registration => {
       setTimeout(() => {
         registration.showNotification('Alarm Clock', {
-          body: "Time's up! Solve the equation to stop the alarm.",
+          body: called,
           icon: 'alarm-icon.png',  // Replace with your icon
           actions: [{action: 'playSound', title: 'Play Alarm'}]
         });
