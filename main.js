@@ -31,12 +31,11 @@ if ('serviceWorker' in navigator) {
 }
 
 // Request notification permission
-if (Notification.permission !== 'granted') {
   Notification.requestPermission().then(permission => {
     if (permission !== 'granted') {
       alert('You need to allow notifications for the alarm to work.');
     }
-  });
+
 }
 
 function setAlarm() {
