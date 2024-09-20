@@ -83,7 +83,7 @@ function showEquationProblem() {
 
 // Check if the user's answer is correct
 function checkAnswer() {
-    const userAnswer = ParseInt(document.getElementById("equationAnswer").value);
+    const userAnswer = parseInt(document.getElementById("equationAnswer").value);
   
     if (userAnswer.trim() === window.currentAnswer) {
       document.getElementById("resultMessage").innerHTML = "Correct! Alarm stopped.";
