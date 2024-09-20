@@ -15,16 +15,12 @@ if ('serviceWorker' in navigator) {
 }
 
 // Request notification permission
-Notify.requestPermission(onPermissionGranted, onPermissionDenied);
-
-
-function onPermissionGranted() {
-    console.log('Permission has been granted by the user');
-}
-
-function onPermissionDenied() {
-    console.warn('Permission has been denied by the user');
-}
+  Notification.requestPermission().then(permission => {
+    if (permission !== 'granted') {
+      alert('You need to allow notifications for the alarm to work.');
+    }
+  
+});
 
 function setAlarm() {
   const alarmInput = document.getElementById("alarmTime").value;
@@ -55,12 +51,25 @@ function scheduleAlarm(timeInMs, called) {
         body: 'Click me to turn off.',
         notifyShow: playAlarmSound
     });
-    setTimeout(noti.show(), timeInMs)
+  if ('serviceWorker' in navigator && 'PushManager' in window) {
+    navigator.serviceWorker.ready.then(registration => {
+      setTimeout(() => {
+        registration.showNotification('Alarm Clock', {
+          body: called,
+          icon: 'alarm.png'  // Replace with your icon
+        });
+
+        // Show the equation problem and play the sound when alarm triggers
+        showEquationProblem();
+        playAlarmSound();
+
+      }, timeInMs); // Time in milliseconds until alarm
+    });
+  }
 }
 
 function playAlarmSound() {
   alarmSound.play();
-  showEquationProblem();
 }
 
 // Generate a differential equation problem
