@@ -20,7 +20,6 @@ Notify.requestPermission(onPermissionGranted, onPermissionDenied);
 
 function onPermissionGranted() {
     console.log('Permission has been granted by the user');
-    doNotification();
 }
 
 function onPermissionDenied() {
