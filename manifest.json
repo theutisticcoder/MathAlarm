@@ -9,8 +9,9 @@
     "orientation": "portrait",
     "icons": [
       {
-        "src": "alarm.webp",
-        "type": "image/webp"
+        "src": "alarm.png",
+        "sizes": "512x512",
+        "type": "image/png"
       }
     ]
 }
