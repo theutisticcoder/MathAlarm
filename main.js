@@ -40,22 +40,16 @@ function setAlarm() {
   var name = prompt("Choose a name for the alarm.")
   const timeUntilAlarm = alarmTime - now;
 
-  alert(`Alarm set for ${alarmInput}`);
-
   // Schedule alarm with service worker notification
   scheduleAlarm(timeUntilAlarm, name);
 }
 
 function scheduleAlarm(timeInMs, called) {
-    var noti = new Notify( called, {
-        body: 'Click me to turn off.',
-        notifyShow: playAlarmSound
-    });
   if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker.ready.then(registration => {
       setTimeout(() => {
-        registration.showNotification('Alarm Clock', {
-          body: called,
+        registration.showNotification(called, {
+          body: "Click me to math it off!",
           icon: 'alarm.png'  // Replace with your icon
         });
 
@@ -78,7 +72,7 @@ function showEquationProblem() {
 
   // Simple differential equation: dy/dx = 2x (solution: y = x^2 + C)
   const a = Math.floor(Math.random()* 100);
-  const b = Math.floor(Math.random()* 100);
+  const b = Math.floor(Math.random()* 10);
 
   // Display the problem
   document.getElementById("equationProblem").innerHTML = a + " * " + b;
