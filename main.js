@@ -35,8 +35,8 @@ if ('serviceWorker' in navigator) {
     if (permission !== 'granted') {
       alert('You need to allow notifications for the alarm to work.');
     }
-
-}
+  
+});
 
 function setAlarm() {
   const alarmInput = document.getElementById("alarmTime").value;
