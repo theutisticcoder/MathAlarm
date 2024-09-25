@@ -15,14 +15,16 @@ if ('serviceWorker' in navigator) {
 }
 
 // Request notification permission
+
+
+function setAlarm() {
   Notification.requestPermission().then(permission => {
     if (permission !== 'granted') {
       alert('You need to allow notifications for the alarm to work.');
+      return;
     }
   
 });
-
-function setAlarm() {
   const alarmInput = document.getElementById("alarmTime").value;
 
   if (!alarmInput) {
