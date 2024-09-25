@@ -85,7 +85,7 @@ function showEquationProblem() {
 function checkAnswer() {
     const userAnswer = document.getElementById("equationAnswer").value
   
-    if (userAnswer.trim() === window.currentAnswer) {
+    if (parseInt(userAnswer) ===window.currentAnswer) {
       document.getElementById("resultMessage").innerHTML = "Correct! Alarm stopped.";
       document.getElementById("alarmSound").pause();
     } else {
