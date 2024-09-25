@@ -50,7 +50,10 @@ function scheduleAlarm(timeInMs, called) {
   if ('serviceWorker' in navigator && 'PushManager' in window) {
     
         setTimeout(()=> {
+          if (Notification.permission === "granted") {
+
           const noti = new Notification(called);
+          }
           showEquationProblem();
           playAlarmSound();
         }, timeInMs)
