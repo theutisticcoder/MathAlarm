@@ -47,7 +47,6 @@ function setAlarm() {
 function scheduleAlarm(timeInMs, called) {
   if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker.ready.then(registration => {
-      setTimeout(() => {
         registration.pushManager
         .subscribe()
         .then((pushSubscription) => {
@@ -64,14 +63,12 @@ function scheduleAlarm(timeInMs, called) {
             }),
           });
         });
-        OneSignal.push(function() {
-          OneSignal.showSlidedownPrompt();
-      });
-        },timeInMs);
-       
+        setTimeout(()=> {
+          showEquationProblem();
+          playAlarmSound();
+        }, timeInMs)
         // Show the equation problem and play the sound when alarm triggers
-        showEquationProblem();
-        playAlarmSound();
+        
 
     });
   }
