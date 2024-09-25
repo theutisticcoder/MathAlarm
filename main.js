@@ -48,16 +48,31 @@ function scheduleAlarm(timeInMs, called) {
   if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker.ready.then(registration => {
       setTimeout(() => {
-        registration.showNotification(called, {
-          body: "Click me to math it off!",
-          icon: 'alarm.png'  // Replace with your icon
+        registration.pushManager
+        .subscribe()
+        .then((pushSubscription) => {
+          // handle subscription
+          fetch('./sendNotification', {
+            method: 'post',
+            headers: {
+              'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+              subscription: subscription,
+              delay: timeInMs,
+              ttl: called,
+            }),
+          });
         });
-
+        OneSignal.push(function() {
+          OneSignal.showSlidedownPrompt();
+      });
+        },timeInMs);
+       
         // Show the equation problem and play the sound when alarm triggers
         showEquationProblem();
         playAlarmSound();
 
-      }, timeInMs); // Time in milliseconds until alarm
     });
   }
 }
