@@ -48,31 +48,14 @@ function setAlarm() {
 
 function scheduleAlarm(timeInMs, called) {
   if ('serviceWorker' in navigator && 'PushManager' in window) {
-    navigator.serviceWorker.ready.then(registration => {
-        registration.pushManager
-        .subscribe()
-        .then((pushSubscription) => {
-          // handle subscription
-          fetch('./sendNotification', {
-            method: 'post',
-            headers: {
-              'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-              subscription: subscription,
-              delay: timeInMs,
-              ttl: called,
-            }),
-          });
-        });
+    
         setTimeout(()=> {
+          const noti = new Notification(called);
           showEquationProblem();
           playAlarmSound();
         }, timeInMs)
         // Show the equation problem and play the sound when alarm triggers
-        
 
-    });
   }
 }
 
